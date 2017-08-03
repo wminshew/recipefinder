@@ -1,0 +1,19 @@
+<h1>Searching Food2Fork for recipes with <%= @search_term %></h1>
+<% if @recipes.nil? %>
+	<p>Sorry! No recipes with <%= @search_term %> found<p>
+<% else %>
+	<table>
+		<tr>
+			<th>Thumbnail</th>
+			<th>Title</th>
+			<th>Social Rank</th>
+		</tr>
+		<% @recipes.each do |recipe| %>
+			<tr>
+				<td><%= link_to(image_tag(recipe["image_url"], width: 100, height: 100), recipe["source_url"]) %></td>
+				<td><%= link_to(sanitize(recipe["title"]), recipe["source_url"]) %></td>
+				<td><%= recipe["social_rank"] %></td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>
